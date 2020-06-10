@@ -1,39 +1,26 @@
-import React, {Component} from 'react'
+import React, {useState} from 'react'
 
 
-class Chat extends Component{
+function Chat(props){
 
-    constructor(props){
-        super(props)
-        this.state ={ quote: ''}
-        this.addQuote = this.addQuote.bind(this)
-        this.handleSubmit = this.handleSubmit.bind(this)
-    }
-    addQuote(evt){
-        this.setState({quote: evt.target.value})
-    }
-    handleSubmit(evt){
-        evt.preventDefault()
-        this.props.newQuote(this.state)
-        this.setState({quote:''})
-    }
-       render(){
-        let v  = [...this.props.quotes];
+   const [quote, setQuote] = useState('');
+   const handleChange = (evt) => setQuote(evt.target.value)
+   const handleSubmit = (evt)=> {evt.preventDefault()
+    props.newQuote([...oldQuotes, quote]) 
+    setQuote('')}
+    let oldQuotes  = [...Array.from(props.quotes)];
         return(
             <div>
                 <ul>
-        {v.map(q => <li>{this.props.name} mowi {q}</li>)
-
-                    }
+        {oldQuotes.map(q => <li>{props.name} mowi {q}</li>)}
                 </ul>
-                <form onSubmit ={this.handleSubmit}>         
-                    <input type='text'value = {this.state.quote} onChange = {this.addQuote} />
+                <form onSubmit ={handleSubmit}>         
+                    <input type='text'value = {quote} onChange = {handleChange} />
                     
                     <button>Go</button>
                 </form>               
             </div>
         )
-    }
 }
 
 export default Chat

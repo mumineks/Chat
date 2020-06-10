@@ -1,33 +1,48 @@
-import React, {Component} from 'react'
-import {Route, Switch, Link} from 'react-router-dom'
+import React, {useState} from 'react';
+import { css} from '@emotion/core';
+import styled from '@emotion/styled'
+
+const Button = styled.button`
+  background-color: turquoise;
+  padding: 10px;
+  border-radius: 25px
+`
+
+const Form = styled.form`
+text-align:center
+
+`
+
+const Div = styled.div`
+height: 100%;
+`
 
 
-class Home extends Component{
-    constructor(props){
-        super(props);
-        this.state = {userName: ''}
-        this.handleSetName = this.handleSetName.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this)
-    }
-   handleSetName(evt){
-        this.setState({userName: evt.target.value})
+
+function Home(props){
+    
+
+const [userName, setValueName] = useState(props.name);
+
+  const handleSetName = (evt) => {
+         setValueName(evt.target.value)
         }
-    handleSubmit(evt){
+    const handleSubmit = (evt) =>{
         evt.preventDefault()
-        this.props.setName(this.state)
-        this.props.history.push('/chat')
+        props.setName(userName)
+        props.history.push('/chat')
     }
-    render(){
         return(
-            <div>
-                <form onSubmit = {this.handleSubmit}>
+
+            <Div>
+                <Form onSubmit = {handleSubmit}>
                     <label htmlFor ='userName'>Name:</label>
-                    <input name = 'userName' type='text' value = {this.state.userName} onChange = {this.handleSetName} />
-                    <button>Send</button>
-                </form>
-            </div>
+                    <input name = 'userName' type='text' value = {userName} onChange = {handleSetName} />
+                    <Button> Send</Button>
+                </Form>
+            </Div>
+         
         )
     }
-}
 
 export default Home
