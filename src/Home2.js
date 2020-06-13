@@ -1,9 +1,8 @@
 import React, {useState, useContext} from 'react';
 import { css} from '@emotion/core';
 import styled from '@emotion/styled';
-import {ChatContext} from './ChatContext';
-import {createStore} from 'redux';
-import {connect, Provider} from 'react-redux';
+import {ACTION_TYPES, reducer, defaultState, useActions, ReduxContext, ReduxProvider} from './reducer';
+
 
 
 
@@ -11,18 +10,21 @@ import {connect, Provider} from 'react-redux';
 
 function Home(props){
     
-    const {name, changeName, clearField} = useContext(ChatContext);
+    const {state, dispatch} = useContext(ReduxContext);
     const handleSubmit = (evt) =>{
         evt.preventDefault()
         props.history.push('/chat')
-        clearField()
+    }
+    const handleOnChange = (evt) => {
+        console.log(state.name)
+        dispatch({type: ACTION_TYPES.USERNAMECHANGE, payload: evt.target.value})
     }
         return(
 
             <Div>
                 <Form onSubmit = {handleSubmit}>
                     <label htmlFor ='userName'>Name:</label>
-                    <input name = 'userName' type='text' value = {name} onChange = {changeName} />
+                    <input name = 'userName' type='text' value = {state.name} onChange = {handleOnChange} />
                     <Button> Send</Button>
                 </Form>
             </Div>

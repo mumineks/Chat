@@ -1,21 +1,28 @@
-import React, {useState} from 'react'
+import React, {useContext} from 'react'
+import {ChatContext} from './ChatContext';
 
 
 function Chat(props){
 
-   const [quote, setQuote] = useState('');
-   const handleChange = (evt) => setQuote(evt.target.value)
-   const handleSubmit = (evt)=> {evt.preventDefault()
-    props.newQuote([...oldQuotes, quote]) 
-    setQuote('')}
-    let oldQuotes  = [...Array.from(props.quotes)];
+   const {name, quotes, quote, addQuote, changeQuote, clearField} = useContext(ChatContext);
+   const handleInputChange = evt => changeQuote(evt.target.value)
+   const handleSubmit = evt =>{
+       evt.preventDefault();
+       addQuote()
+       changeQuote('')
+   }
+
+   const handleOnClick = () => changeQuote('')
+
+   let oldQuotes  = [...Array.from(quotes)];
+    
         return(
             <div>
                 <ul>
-        {oldQuotes.map(q => <li>{props.name} mowi {q}</li>)}
+        {oldQuotes.map(q => <li>{name} mowi {q}</li>)}
                 </ul>
                 <form onSubmit ={handleSubmit}>         
-                    <input type='text'value = {quote} onChange = {handleChange} />
+                    <input type='text' value = {quote} onChange = {handleInputChange}/>
                     
                     <button>Go</button>
                 </form>               
