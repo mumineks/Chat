@@ -1,61 +1,135 @@
 body > #root > div {
-  height: 100vh;
-  width: 100%;
-  margin: 0
+	height: 100vh;
+	width: 100%;
+	margin: 0;
+	box-sizing: border-box;
+	background-color: RGB(13, 239, 255, 0.5);
 }
 
-.body-styling{
-  background-color: #000;
-  padding: 0;
-  display: block;
+.body-stylings {
+	background-color: rgba(30, 211, 214, 0.5);
+	padding: 0;
+	display: block;
+	box-sizing: border-box;
 }
 
-.box{
-  width: 400px;
-  height: 300px;
-  background-color: #329ba8;
-  display: block;
-  padding: 30px;
-  margin: auto;
-  border-radius: 5px;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  overflow-x: scroll;
-  scrollbar-color: #87ceeb #635b5d;
+.boxChat {
+	height: 100vh;
+	background-color: #0d1cbd;
+	display: block;
+	padding: auto;
+	margin: auto;
+	border-radius: 5px;
+	position: relative;
+	box-sizing: border-box;
+	width: 40%;
+	font-family: 'Lato', sans-serif;
+}
+.Scrollbar{
+	height: 70vh;
 }
 
-div .form{
-  position: relative;
-  bottom: 0;
-  display: block;
-  padding: 20px;
+.inputChat {
+	font-style: italic;
+	border-radius: 20px;
+	margin-top: 10px;
+}
+.boxHome {
+	height: 100vh;
+	background-color: #f7f8fa;
+	display: block;
+	padding: auto;
+	margin: auto;
+	border-radius: 5px;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	overflow-x: scroll;
+	scrollbar-color: #87ceeb #635b5d;
+	box-sizing: border-box;
+	box-shadow: inset 0 0 3em #f7f2f7, 0 0 1em #25d8db;
+	font-family: 'Nova Square', cursive;
 }
 
-*::-webkit-scrollbar-track {
-  background: orange;
-}
-.quotes{
-  top: 0;
-  position: absolute;
-  margin: auto;
-  display: flex;
-  align-self: flex-start;
-  flex-direction: column;
+input {
+	width: 100%;
 }
 
-button{
-  background-color: turquoise;
-  padding: 10px;
-  border-radius: 25px
+ul {
+	margin-top: 20px;
+	background-color: #dcdce3;
+	border-radius: 3px;
+	min-height: 70vh;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	box-shadow: inset -2px -2px #5a5a5c;
+}
+li {
+	background-color: #0da1e0;
+	margin: 10px;
+	border-radius: 20px;
+	list-style-type: none;
+}
+.liText {
+	display: inline-block;
+	padding-bottom: 5px;
+	padding-left: 5px;
+}
+.liButtons {
+	text-align: right;
+	margin-top: 10px;
+}
+div .form {
+	position: relative;
+	bottom: 0;
+	display: block;
+	padding: 20px;
 }
 
-.edited{
-  color: #ff150d;
-  font-size: 10px;
+.quotes {
+	top: 0;
+	position: absolute;
+	margin: auto;
+	display: flex;
+	align-self: flex-start;
+	flex-direction: column;
 }
 
-.date{
-  color: #7d7478;
-  font-size: 10px;
+button {
+	padding: 10px;
+	border-radius: 25px;
+}
+
+div .buttonCentered {
+	padding-left: 40%;
+	padding-top: 30px;
+}
+
+.buttonHome:hover {
+	background-color: rgba(30, 211, 214, 0.5);
+}
+.changeUserNameButton{
+	margin-top: 10px;
+}
+.sendQuoteButton {
+	float: right;
+	overflow-anchor: auto;
+	min-height: 1px;
+}
+.saveChangeButton {
+text-align: right;
+}
+.edited {
+	color: #ff150d;
+	font-size: 10px;
+}
+
+.date {
+	padding-top: 10px;
+	padding-left: 2px;
+	color: #7d7478;
+	font-size: 10px;
+	width: 50%;
+	margin-right: auto;
+	margin-bottom: 0;
 }

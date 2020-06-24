@@ -1,49 +1,40 @@
-import React, {useState, useContext} from 'react';
-import { css} from '@emotion/core';
-import styled from '@emotion/styled';
-import {ChatContext} from './ChatContext';
-import {createStore} from 'redux';
-import {connect, Provider} from 'react-redux';
+import React, { useContext } from 'react';
+import { ACTION_TYPES, ReduxContext } from './reducer';
 
+function Home(props) {
+	const { state, dispatch } = useContext(ReduxContext);
+	const handleSubmit = (evt) => {
+		evt.preventDefault();
+		if (state.name) {
+			props.history.push('/chat');
+		}
+	};
+	const handleOnChange = (evt) => {
+		dispatch({ type: ACTION_TYPES.USER_NAME_CHANGE, payload: evt.target.value });
+	};
+	return (
+		<div className="container">
+			<div className="row">
+				<div className="boxHome col-md-6 offset-md-3 col-sm-12 col-12">
+					<div className="row h-100 justify-content-center align-items-center">
+						<form onSubmit={handleSubmit} className="form-group">
+							<label htmlFor="userName">Name:</label>
+							<input
+								name="userName"
+								type="text"
+								placeholder="wprowadź imię użytkownika"
+								value={state.name}
+								onChange={handleOnChange}
+							/>
+							<div className="buttonCentered">
+								<button className="buttonHome"> Send</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	);
+}
 
-
-
-
-function Home(props){
-    
-    const {name, changeName, clearField} = useContext(ChatContext);
-    const handleSubmit = (evt) =>{
-        evt.preventDefault()
-        props.history.push('/chat')
-        clearField()
-    }
-        return(
-
-            <Div>
-                <Form onSubmit = {handleSubmit}>
-                    <label htmlFor ='userName'>Name:</label>
-                    <input name = 'userName' type='text' value = {name} onChange = {changeName} />
-                    <Button> Send</Button>
-                </Form>
-            </Div>
-         
-        )
-    }
-
-export default Home
-
-
-const Button = styled.button`
-  background-color: turquoise;
-  padding: 10px;
-  border-radius: 25px
-`
-
-const Form = styled.form`
-text-align:center
-
-`
-
-const Div = styled.div`
-height: 100%;
-`
+export default Home;

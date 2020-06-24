@@ -1,24 +1,24 @@
-import React, { useReducer, createContext } from 'react';
-import uuid from 'uuid/v4';
+import React, { useReducer, createContext, useEffect } from 'react';
+import { v4 as uuid } from 'uuid';
 
 export const ACTION_TYPES = {
-	USERNAMECHANGE: 'USERNAMECHANGE',
-	TYPEQUOTE: 'TYPEQUOTE',
-	CHANGEQUOTES: 'CHANGEQUOTES',
-	REMOVEQUOTE: 'REMOVEQUOTE',
-	TOGGLEEDITING: 'TOGGLEEDITING',
+	USER_NAME_CHANGE: 'USER_NAME_CHANGE',
+	TYPE_QUOTE: 'TYPE_QUOTE',
+	CHANGE_QUOTES: 'CHANGE_QUOTES',
+	REMOVE_QUOTE: 'REMOVE_QUOTE',
+	TOGGLE_EDITING: 'TOGGLE_EDITING',
 	UPDATE: 'UPDATE',
-	UPDATETYPING: 'UPDATETYPING',
-	SETDATE: 'SETDATE'
+	UPDATE_TYPING: 'UPDATE_TYPING',
+	SET_DATE: 'SET_DATE'
 };
 
 export const reducer = (state, action) => {
 	switch (action.type) {
-		case 'USERNAMECHANGE':
+		case 'USER_NAME_CHANGE':
 			return { ...state, name: action.payload };
-		case 'TYPEQUOTE':
+		case 'TYPE_QUOTE':
 			return { ...state, quote: action.payload };
-		case 'CHANGEQUOTES':
+		case 'CHANGE_QUOTES':
 			return {
 				...state,
 				quotes: [
@@ -27,9 +27,9 @@ export const reducer = (state, action) => {
 				],
 				quote: ' '
 			};
-		case 'REMOVEQUOTE':
+		case 'REMOVE_QUOTE':
 			return { ...state, quotes: state.quotes.filter((q) => q.id !== action.id) };
-		case 'TOGGLEEDITING':
+		case 'TOGGLE_EDITING':
 			return {
 				...state,
 				quotes: state.quotes.map((q) => (q.id === action.id ? { ...q, isEditable: !q.isEditable } : q))
@@ -39,7 +39,7 @@ export const reducer = (state, action) => {
 				...state,
 				quotes: state.quotes.map((q) => (q.id === action.id ? { ...q, isEditable: false, isEdited: true } : q))
 			};
-		case 'UPDATETYPING':
+		case 'UPDATE_TYPING':
 			return {
 				...state,
 				quotes: state.quotes.map((q) => (q.id === action.id ? { ...q, content: action.payload } : q))
@@ -50,7 +50,7 @@ export const reducer = (state, action) => {
 };
 
 export const defaultState = {
-	name: 'imię',
+	name: '',
 	quotes: [],
 	quote: ''
 };
@@ -58,7 +58,12 @@ export const defaultState = {
 export const ReduxContext = createContext();
 
 export const ReduxProvider = ({ children }) => {
-	const [ state, dispatch ] = useReducer(reducer, defaultState);
-
+	const [ state, dispatch ] = useReducer(reducer, defaultState, () => {
+		const localData = localStorage.getItem('stateName');
+		return localData ? { ...defaultState, name: JSON.parse(localData) } : defaultState;
+	});
+	useEffect(() => {
+		localStorage.setItem('stateName', JSON.stringify(state.name));
+	});
 	return <ReduxContext.Provider value={{ state, dispatch }}>{children}</ReduxContext.Provider>;
 };

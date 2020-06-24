@@ -1,0 +1,82 @@
+remote:        Using default npm version: 6.14.5
+remote:
+remote: -----> Installing dependencies
+remote:        Installing node modules (package.json + package-lock)
+remote:
+remote:        > core-js@2.6.11 postinstall /tmp/build_195ee4471822069ab3618bbf5a65d93a/node_modules/babel-runtime/node_modules/core-js
+remote:        > node -e "try{require('./postinstall')}catch(e){}"
+remote:
+remote:
+remote:        > core-js@3.6.5 postinstall /tmp/build_195ee4471822069ab3618bbf5a65d93a/node_modules/core-js
+remote:        > node -e "try{require('./postinstall')}catch(e){}"
+remote:
+remote:
+remote:        > core-js-pure@3.6.5 postinstall /tmp/build_195ee4471822069ab3618bbf5a65d93a/node_modules/core-js-pure
+remote:        > node -e "try{require('./postinstall')}catch(e){}"
+remote:
+remote:        added 1728 packages from 828 contributors and audited 1732 packages in 42.538s
+remote:
+remote:        59 packages are looking for funding
+remote:          run `npm fund` for details
+remote:
+remote:        found 1 low severity vulnerability
+remote:          run `npm audit fix` to fix them, or `npm audit` for details
+remote:
+remote: -----> Build
+remote:        Running build
+remote:
+remote:        > chat@0.1.0 build /tmp/build_195ee4471822069ab3618bbf5a65d93a
+remote:        > react-scripts build
+remote:
+remote:        Creating an optimized production build...
+remote:        Failed to compile.
+remote:
+remote:        ./src/reducer.js
+remote:        Cannot find module: 'uuid/v4'. Make sure this package is installed.
+remote:
+remote:        You can install this package by running: npm install uuid/v4.
+remote:
+remote:
+remote: npm ERR! code ELIFECYCLE
+remote: npm ERR! errno 1
+remote: npm ERR! chat@0.1.0 build: `react-scripts build`
+remote: npm ERR! Exit status 1
+remote: npm ERR!
+remote: npm ERR! Failed at the chat@0.1.0 build script.
+remote: npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+remote:
+remote: npm ERR! A complete log of this run can be found in:
+remote: npm ERR!     /tmp/npmcache.rQn4o/_logs/2020-06-19T19_46_41_876Z-debug.log
+remote:
+remote: -----> Build failed
+remote:
+remote:        We're sorry this build is failing! You can troubleshoot common issues here:
+remote:        https://devcenter.heroku.com/articles/troubleshooting-node-deploys
+remote:
+remote:        Some possible problems:
+remote:
+remote:        - Node version not specified in package.json
+remote:          https://devcenter.heroku.com/articles/nodejs-support#specifying-a-node-js-version
+remote:
+remote:        - A module may be missing from 'dependencies' in package.json
+remote:          https://devcenter.heroku.com/articles/troubleshooting-node-deploys#ensure-you-aren-t-relying-on-untracked-dependencies
+remote:
+remote:        Love,
+remote:        Heroku
+remote:
+remote:  !     Push rejected, failed to compile React.js (create-react-app) multi app.
+remote:
+remote:  !     Push failed
+remote: Verifying deploy...
+remote:
+remote: !       Push rejected to chattymsiw.
+remote:
+To https://git.heroku.com/chattymsiw.git
+ ! [remote rejected] master -> master (pre-receive hook declined)
+error: failed to push some refs to 'https://git.heroku.com/chattymsiw.git'
+
+D:\Tymo\Frontend development z react\Chat\chat>
+
+https://github.com/mars/create-react-app-buildpack
+
+https://chat-ffc8d.web.app
