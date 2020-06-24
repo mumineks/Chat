@@ -43,9 +43,7 @@ body > #root > div {
 	border-radius: 5px;
 	justify-content: center;
 	align-items: center;
-	position: absolute;
-	overflow-x: scroll;
-	scrollbar-color: #87ceeb #635b5d;
+	position: relative;
 	box-sizing: border-box;
 	box-shadow: inset 0 0 3em #f7f2f7, 0 0 1em #25d8db;
 	font-family: 'Nova Square', cursive;
