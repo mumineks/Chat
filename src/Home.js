@@ -22,7 +22,7 @@ function Home(props) {
 							<input
 								name="userName"
 								type="text"
-								placeholder="wprowadź imię użytkownika"
+								placeholder="enter user name"
 								value={state.name}
 								onChange={handleOnChange}
 							/>
